@@ -18,32 +18,28 @@ let amount2 = +prompt('Во сколько это обойдется?');
 
 let getStatusIncome = function () {
     // Используя ветку условий определяем уровень доходов
-    if (budgetDay > 1200) {
+    if (budgetDay >= 1200) {
         return ('У вас высокий уровень дохода');
-    } else if (budgetDay > 600 || budgetDay < 1200) {
+    } else if (budgetDay < 1200 || budgetDay >= 600) {
         return ('У вас средний уровень дохода');
     } else if (budgetDay < 600 || budgetDay > 0) {
         return ('К сожалению у вас уровень дохода ниже среднего');
-    } else if (budgetDay < 0) {
-        return ('Что то пошло не так');
     } else if (budgetDay = 0) {
         return ('У вас нулевой уровень дохода');
-    } else if (budgetDay = 600) {
-        return ('У вас нормальный уровень дохода');
-    } else if (budgetDay = 1200) {
-        return ('У вас неплохой уровень дохода');
+    } else if (budgetDay < 0) {
+        return ('Что то пошло не так');
     }
 };
 
 
-function getExpensesMonth(x, y) {
-    return x + y;
+function getExpensesMonth(amount1, amount2) {
+    return amount1 + amount2;
 }
 getExpensesMonth(amount1, amount2);
 
 
-function getAccumulatedMonth(x, y, z) {
-    return x - (y + z);
+function getAccumulatedMonth(money, amount1, amount2) {
+    return money - (amount1 + amount2);
 }
 getAccumulatedMonth(money, amount1, amount2);
 
@@ -51,23 +47,23 @@ let accumulatedMonth = getAccumulatedMonth(money, amount1, amount2);
 // console.log(`accumulatedMonth: ${accumulatedMonth}`);
 
 
-function getTargetMonth(x, y) {
-    return x / y;
+function getTargetMonth(mission, accumulatedMonth) {
+    return mission / accumulatedMonth;
 }
 getTargetMonth(mission, accumulatedMonth);
 
 let budgetDay = accumulatedMonth / 30;
 
 let showTypeOf = function (data) {
-    console.log('showTypeOf: ' + data);
+    console.log(data, typeof(data));
 }
 showTypeOf(amount1);
 showTypeOf(amount2);
 showTypeOf(money);
 showTypeOf(mission);
 
-console.log(`getExpensesMonth: ${getExpensesMonth(amount1, amount2)}`);
-console.log(addExpenses.split(','));
-console.log(`getTargetMonth: ${Math.floor(getTargetMonth(mission, accumulatedMonth))}`);
-console.log('budgetDay: ' + Math.floor(budgetDay));
-console.log(`getStatusIncome: ${getStatusIncome()}`);
+console.log(`Расходы за месяц: ${getExpensesMonth(amount1, amount2)}`);
+console.log(addExpenses.split(',') );
+console.log(`Время миссии: ${Math.floor(getTargetMonth(mission, accumulatedMonth))}`);
+console.log(`Дневной бюджет: ${Math.floor(budgetDay)}`);
+console.log(`Уровень доходов: ${getStatusIncome()}`);
