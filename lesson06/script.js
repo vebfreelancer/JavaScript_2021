@@ -1,7 +1,7 @@
 'use srict';
 
 // Обьявляем переменную с загаданным числом
-let secret = 50;
+let secret = Math.random();
 
 // Переменная для хранения ввода пользователя
 let numberPrompt;
