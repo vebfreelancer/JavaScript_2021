@@ -8,7 +8,7 @@ function getRandomInt(min, max) {
 }
 
 //произвольный выбор числа от 0 до 100 
-let secret = getRandomInt(0,100);
+let secret = getRandomInt(1,100);
 console.log(secret);
 
 // Переменная для хранения ввода пользователя
