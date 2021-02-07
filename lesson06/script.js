@@ -1,7 +1,15 @@
 'use srict';
 
-// Обьявляем переменную с загаданным числом
-let secret = Math.random();
+///Функция создания массива радомных чисел
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+//произвольный выбор числа от 0 до 100 
+let secret = getRandomInt(1,100);
+console.log(secret);
 
 // Переменная для хранения ввода пользователя
 let numberPrompt;
