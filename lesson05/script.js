@@ -1,5 +1,21 @@
 'use strict';
 
+// Функция проверки на число
+let isNumber = function(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+};
+
+// Месячный доход
+let money;
+
+let start = function () {
+    do{
+        money = prompt(`Ваш месячный доход?:`);
+    }
+    while (!isNumber(money));
+};
+start();
+
 // Обьявляем переменные
 let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Квартплата, проездной, кредит');
 let deposit = confirm('Есть ли у вас депозит в банке?');
@@ -19,22 +35,6 @@ let getStatusIncome = function () {
         return ('Что то пошло не так');
     }
 };
-
-// Функция проверки на число
-let isNumber = function(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-};
-
-// Месячный доход
-let money;
-
-let start = function () {
-    do{
-        money = prompt(`Ваш месячный доход?:`);
-    }
-    while (!isNumber(money));
-};
-start();
 
 // Вычисление расходов
 let expenses = [];
@@ -87,7 +87,9 @@ let getTargetMonth = function () {
 let budgetDay = accumulatedMonth / 30;
 
 // Консоль логи
+console.log('Месячный доход: ' + money);
 console.log('Расходы за месяц :' + expensesAmount);
+console.log('Месячный бюджет :' + accumulatedMonth);
 console.log('Дневной бюджет: ' + Math.floor(budgetDay));
 console.log(getTargetMonth());
 console.log(`getStatusIncome: ${getStatusIncome()}`);
