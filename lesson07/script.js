@@ -124,6 +124,6 @@ for (let key in appData){
 }
 
 // Консоль логи
-console.log('Расходы за месяц: ' + appData.expenses);
+console.log('Расходы за месяц: ' + appData.expensesMonth);
 console.log(getTargetMonth());
 console.log(`getStatusIncome: ${getStatusIncome()}`);
