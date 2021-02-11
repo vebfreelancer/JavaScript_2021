@@ -11,16 +11,17 @@ const bookTwo = book[0].querySelectorAll('li');
 const bookFive = book[5].querySelectorAll('li');
 bookTwo[3].after(bookTwo[6]);
 bookTwo[6].after(bookTwo[8]);
+bookTwo[9].after(bookTwo[2]);
 bookFive[1].after(bookFive[9]);
 bookFive[4].after(bookFive[2]);
+
 
 // Меняем картинку фона
 document.body.style.backgroundImage = 'url(image/you-dont-know-js.jpg)';
 
 // Исправляем заголовок
-const bookThreeTitle = book[4].querySelector('h2');
+const bookThreeTitle = book[4].querySelector('h2 a');
 bookThreeTitle.textContent = 'Книга 3. this и Прототипы Объектов';
-bookThreeTitle.style.color = '#bdb76b';
 
 // Убираем рекламу
 const advertising = document.querySelector('.adv');
