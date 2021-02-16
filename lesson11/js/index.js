@@ -48,6 +48,7 @@ let appData = {
 
     // Метод старт
     start: function () {
+
         appData.budget = +money.value;
         
         appData.getExpenses();
@@ -56,7 +57,6 @@ let appData = {
         appData.getAddExpenses();
         appData.getAddIncome();        
         appData.getBudget();
-        // appData.getTargetMonth();
         appData.showResult();
     },
 
@@ -68,7 +68,6 @@ let appData = {
         additionalExpensesValue.value = appData.addExpenses.join(', ');
         additionalIncomeValue.value = appData.addIncome.join(', ');
         targetMonthValue.value = Math.ceil(appData.getTargetMonth());
-        incomePeriodValue.value = appData.calcSaveMoney();
     },
 
     // Добавление блоков обязательных расходов
@@ -80,7 +79,7 @@ let appData = {
             expensesPlus.style.display = 'none';
         }
     },
-    //Добавление блоков дополнительных доходов
+    //Добавление блоков обязательных расходов дополнительных доходов
     addIncomeBlock: function(){
         let cloneincomeItems = incomeItems[0].cloneNode(true);
         incomeItems[0].parentNode.insertBefore(cloneincomeItems, incomePlus);
@@ -108,7 +107,7 @@ let appData = {
             let itemIncome = item.querySelector('.income-title').value;
             let cashIncome = item.querySelector('.income-amount').value;
             appData.income[itemIncome] = cashIncome;
-        });
+        })
         for (let key in appData.income){
             appData.incomeMonths += +appData.income[key];
         }
@@ -146,52 +145,60 @@ let appData = {
             };
         }
     },
+
     // Время достижения цели
     getTargetMonth: function () {
+        
         return targetAmount.value / appData.budgetMonth;
     },
+
     // Накопления за период
     calcSaveMoney: function (){
+        console.log(appData.budgetMonth);
+        console.log(range.value);
+        periodAmount.textContent  = periodSelect.value;
         return appData.budgetMonth * range.value;
     },
+
     // Вычисляем budgetMonth, budgetDay и заносим в  appData
     getBudget : function () {
         appData.budgetMonth = appData.budget + appData.incomeMonths - appData.expensesMonth;
-    
         appData.budgetDay = Math.round(appData.budgetMonth / 30);
     },
+
     // Заносим сумму расходов в appData expensesMonth 
     getExpensesMonth: function () {
         for (let key in appData.expenses){
             appData.expensesMonth += appData.expenses[key];
         }
-    },        
-};
+    }
 
+};
 
 // События кнопка старт
 start.addEventListener('click', appData.start);
 
-money.addEventListener('change', function(){
+money.addEventListener('input', function(){
     if (!isNumber(money.value) || money.value <= 0){
-        start.setAttribute('disable', 'disable');
+        start.disabled = true;
     } else {
-        start.removeAttribute('disable', 'disable');
+        start.disabled = false;
     }
 });
 
 if (!isNumber(money.value) || money.value <= 0){
-    start.setAttribute('disable', 'disable');  
+    start.disabled = true;  
 };
-
 
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
-// Вывод за период
 periodSelect.addEventListener('input', function(){
     periodAmount.textContent  = periodSelect.value;
+    incomePeriodValue.value = appData.calcSaveMoney();
 
 });
+
+// appData.getInfoDeposit();
 
 appData.getStatusIncome = getStatusIncome;
 
