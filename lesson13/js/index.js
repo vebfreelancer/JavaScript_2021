@@ -65,7 +65,7 @@ let appData = {
         // Блокировка кнопок +
         incomePlus.disabled = true;
         expensesPlus.disabled = true;
-        // Сброс данных appData
+        // Вызов методов appData
         this.budget = +money.value;
         this.getExpenses();
         this.getIncome();
