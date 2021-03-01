@@ -374,3 +374,4 @@ class AppData {
 
 const appData = new AppData();
 appData.listeners();
+console.log(appData);

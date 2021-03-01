@@ -1,0 +1,17 @@
+.arrow_right {
+    position: relative;
+    width: 100px;
+    height: auto;
+    display: block;
+}
+
+.arrow_down {
+    position: relative;
+    width: 100px;
+    height: auto;
+    display: block;
+}
+
+/* body {
+    background-color: blue;
+}  */

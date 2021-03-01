@@ -65,7 +65,7 @@ let appData = {
         // Блокировка кнопок +
         incomePlus.disabled = true;
         expensesPlus.disabled = true;
-        // Сброс данных appData
+        // Вызов данных appData
         this.budget = +money.value;
         this.getExpenses();
         this.getIncome();
@@ -118,7 +118,12 @@ let appData = {
         }
         // console.log(this);
     },
-
+    
+    // Вычисляем budgetMonth, budgetDay и заносим в  appData
+    getBudget : function () {
+        this.budgetMonth = this.budget + this.incomeMonths - this.expensesMonth;
+        this.budgetDay = Math.round(this.budgetMonth / 30);
+    },
     // Вывод значений
     showResult: function(){
         budgetMonthMonthValue.value = this.budgetMonth;
@@ -227,12 +232,6 @@ let appData = {
     calcSaveMoney: function (){
         periodAmount.textContent  = periodSelect.value;
         return this.budgetMonth * range.value;
-    },
-
-    // Вычисляем budgetMonth, budgetDay и заносим в  appData
-    getBudget : function () {
-        this.budgetMonth = this.budget + this.incomeMonths - this.expensesMonth;
-        this.budgetDay = Math.round(this.budgetMonth / 30);
     },
 
     // Заносим сумму расходов в appData expensesMonth 
