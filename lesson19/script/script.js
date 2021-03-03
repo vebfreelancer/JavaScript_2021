@@ -115,7 +115,7 @@ window.addEventListener('DOMContentLoaded', function () {
         popupBtn.forEach((elem) => {
             elem.addEventListener('click', () => {
                 popup.style.display = 'block';
-                if (screen.width >= 738){
+                if (screen.width >= 768){
                     animate({
                         duration: 3000,
                         timing: bounceEaseOut,
