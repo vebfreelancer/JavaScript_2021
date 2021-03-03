@@ -49,36 +49,31 @@ window.addEventListener('DOMContentLoaded', function () {
         }
         // updateClock();
     }
-    countTimer('2021 03 01 21:36:00');
+    countTimer('2021 03 05 21:36:00');
 
     // Меню
     const tooggleMenu = () => {
 
         const btnMenu = document.querySelector('.menu'),
             menu = document.querySelector('menu'),
-            closeBtn = document.querySelector('.close-btn'),
-            menuItems = menu.querySelectorAll('ul>li');
-        const handlerMenu = () => {
-            // if (!menu.style.transform || menu.style.transform === `translate(-100%)`){
-            //     menu.style.transform = `translate(0)`;
-            // }   else {
-            //     menu.style.transform = `translate(-100%)`;
-            // }
-            menu.classList.toggle('active-menu');
-        };
-        btnMenu.addEventListener('click', handlerMenu);
-        closeBtn.addEventListener('click', handlerMenu);
+            body = document.querySelector('body');
 
-        menuItems.forEach((elem) => elem.addEventListener('click', handlerMenu));
+        body.addEventListener('click', (event) => {
 
+            let target = event.target;
+            target = target.closest('menu, .menu');
+
+            if (target) {
+                menu.classList.toggle('active-menu');
+            }
+        });
     };
     tooggleMenu();
 
     // popup
     const togglePopup = () => {
-        const popup = document.querySelector('.popup'),
+        const popUp = document.querySelector('.popup'),
             popupBtn = document.querySelectorAll('.popup-btn'),
-            popupClose = document.querySelector('.popup-close'),
             popupContent = document.querySelector('.popup-content');
 
         function animate(options) {
@@ -114,8 +109,8 @@ window.addEventListener('DOMContentLoaded', function () {
 
         popupBtn.forEach((elem) => {
             elem.addEventListener('click', () => {
-                popup.style.display = 'block';
-                if (screen.width >= 768){
+                popUp.style.display = 'block';
+                if (screen.width >= 768) {
                     animate({
                         duration: 3000,
                         timing: bounceEaseOut,
@@ -123,16 +118,58 @@ window.addEventListener('DOMContentLoaded', function () {
                             popupContent.style.top = progress * 100 + 'px';
                         }
                     });
-                }   else {
+                } else {
                     popupContent.style.top = '10%';
                 }
             });
         });
 
-        popupClose.addEventListener('click', () => {
-            popup.style.display = 'none';
+        popUp.addEventListener('click', (event) => {
+            let target = event.target;
+
+            if (target.classList.contains('popup-close')) {
+                popUp.style.display = 'none';
+            } else {
+                target = target.closest('.popup-content');
+
+                if (!target) {
+                    popUp.style.display = 'none';
+                }
+            }
         });
     };
 
     togglePopup();
+
+    // Табы
+    const tabs = () => {
+        const tabHeader = document.querySelector('.service-header'),
+            tab = tabHeader.querySelectorAll('.service-header-tab'),
+            tabContent = document.querySelectorAll('.service-tab');
+
+        const toggleTabContent = (index) => {
+            for (let i = 0; i < tabContent.length; i++) {
+                if (index === i) {
+                    tab[i].classList.add('active');
+                    tabContent[i].classList.remove('d-none');
+                } else {
+                    tab[i].classList.remove('active');
+                    tabContent[i].classList.add('d-none');
+                }
+            }
+        }
+
+        tabHeader.addEventListener('click', (event) => {
+            let target = event.target;
+            target = target.closest('.service-header-tab');
+            if (target) {
+                tab.forEach((item, i) => {
+                    if (item === target) {
+                        toggleTabContent(i);
+                    }
+                });
+            }
+        });
+    };
+    tabs();
 });
