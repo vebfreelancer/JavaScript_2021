@@ -11,13 +11,13 @@ function calculateFunc(){
     let date = new Date();
     // Время суток
     if (date.getHours() > 6 && date.getHours() < 10){
-        timeOfDay.textContent = 'Добрый день: Утро';
+        timeOfDay.textContent = 'Доброе утро:';
     }   else if (date.getHours() > 10 && date.getHours() < 18){
-        timeOfDay.textContent = 'Добрый день: День';
+        timeOfDay.textContent = 'Добрый день:';
     }   else if (date.getHours() > 18 && date.getHours() < 23){
-        timeOfDay.textContent = 'Добрый день: Вечер';
+        timeOfDay.textContent = 'Добрый вечер:';
     }   else {
-        timeOfDay.textContent = 'Добрый день: Ночь';
+        timeOfDay.textContent = 'Доброй ночи:';
     }
     // День недели
     if (date.getDay() === 1){
