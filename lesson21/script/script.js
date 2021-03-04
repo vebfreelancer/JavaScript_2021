@@ -55,21 +55,15 @@ window.addEventListener('DOMContentLoaded', function () {
     const tooggleMenu = () => {
 
         const btnMenu = document.querySelector('.menu'),
-            menu = document.querySelector('menu');
+            menu = document.querySelector('menu'),
+            body = document.querySelector('body');
 
-        const handlerMenu = () => {
-            menu.classList.toggle('active-menu');
-        };
-
-        btnMenu.addEventListener('click', handlerMenu);
-
-        menu.addEventListener('click', (event) => {
+        body.addEventListener('click', (event) => {
 
             let target = event.target;
-            target = target.closest('menu');
+            target = target.closest('menu, .menu');
 
             if (target) {
-                // handlerMenu();
                 menu.classList.toggle('active-menu');
             }
         });
